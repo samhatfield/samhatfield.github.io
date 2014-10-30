@@ -6,13 +6,25 @@ asset_path: /assets/frontpage/
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-sm-5">
+      <div class="col-sm-4 col-xs-12">
 	<img class="img-rounded img-responsive" src="{{ "me.jpg" | prepend: page.asset_path }}">
       </div>
-      <div class="col-sm-7">
-	<h1>Sam Hatfield</h1>
+      <div class="col-sm-8 col-xs-12">
+	<h1 id="hello">Hello, world!</h1>
+	<script src="{{ "hello.js" | prepend: page.asset_path }}"></script>
+	<p class="lead"><span id="description"></span>Hi, I'm Sam, a programmer living in Bristol. Here are some things that I've done.</p>
       </div>
-      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>High altitude balloon launch</h1>
+      <img class="img-responsive img-rounded" src="{{ "balloon.jpg" | prepend: page.asset_path }}">
+
+      <h1>Knotting in confined polymers</h1>
     </div>
   </div>
 </div>
