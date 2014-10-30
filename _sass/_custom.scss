@@ -16,11 +16,37 @@ body {
   font-weight: 400;
 }
 
+a {
+  color: rgb(235, 0, 90);
+}
+
+a:hover {
+  color: white;
+  background-color: rgb(32, 32, 32);
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+a .fa {
+  color: white;
+}
+
+a .fa:hover {
+  color: rgb(235, 0, 90);;
+  background-color: rgb(32, 32, 32);;
+}
 
 /*
  * Font awesome
  */
 
-a .fa {
+
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  font-weight: 300;
   color: white;
 }
