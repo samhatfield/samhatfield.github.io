@@ -46,7 +46,20 @@ a .fa:hover {
  * Navbar
  */
 
+.navbar {
+  margin: 0;
+}
+
 .navbar-brand {
   font-weight: 300;
   color: white;
+}
+
+.navbar-brand p:hover {
+  color: rgb(235, 0, 90);
+}
+
+.navbar a {
+  padding-right: 0;
+  padding-left: 0;
 }
