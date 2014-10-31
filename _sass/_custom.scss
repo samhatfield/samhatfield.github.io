@@ -27,6 +27,11 @@ a:hover {
   border-radius: 3px;
 }
 
+
+/*
+ * Font awesome
+ */
+
 a .fa {
   color: white;
 }
@@ -35,12 +40,6 @@ a .fa:hover {
   color: rgb(235, 0, 90);;
   background-color: rgb(32, 32, 32);;
 }
-
-/*
- * Font awesome
- */
-
-
 
 /*
  * Navbar
@@ -62,4 +61,14 @@ a .fa:hover {
 .navbar a {
   padding-right: 0;
   padding-left: 0;
+}
+
+/*
+ * Maps
+ */
+.map-canvas {
+  height: 400px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }

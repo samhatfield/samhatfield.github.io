@@ -3,24 +3,39 @@ layout: post
 title:  "High-altitude balloon launch"
 date:   2014-06-15 20:39:07
 categories: balloon
-asset_path: /assets/posts/buseds1
+asset_path: /assets/posts/buseds1/
+maps:
+  - url: trajectory.js
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve --watch`, which launches a web server and auto-regenerates your site when a file is updated.
+<div class="alert alert-info" role="alert"> 
+   This is a copy of a post from the Bristol SEDS website.
+    <a href="http://www.bristol-seds.co.uk/balloon/2014/06/15/hab-launch.html">
+        Head on over there
+    </a> for more info on the society.
+</div>
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+The main project of 2013/2014 was to launch a high-altitude balloon into the stratosphere, where it could take photos and video, and to subsequently recover it. The balloon was successfully launched on the 15th June from an airfield near Tewksebury, Cheltenham, and landed near Glastonbury. It reached an altitude of 32 km, and spent about 3 hours in the air.
+ 
 
-Jekyll also offers powerful support for code snippets:
+### Trajectory
+<div class="map-canvas" id="balloon-trajectory">
+</div>
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+### Payload
+The main payload carried by the balloon contained two flight computers. The first was an [LPCXpresso](http://www.lpcware.com/lpcxpresso) microcontroller fitted with an ARM processor. This interfaced with the environmental sensors (barometers, thermometers et cetera) and the GPS receiver and relayed the data via radio. We then received this data using a portable radio receiver and uploaded it to the [habhub](http://habhub.org/) server, where it could be corroborated with other tracking data and plotted on a map. See Richard Meadows' [github](https://github.com/richardeoin/buseds-hab/tree/master/lpc-src) page for the lpc source code. The second computer was an mBed, which also received data from the GPS module and sent it via a GSM modem to an ordinary mobile phone, telling us where the balloon was. Unfortunately, this computer failed for some reason, but it wasn't essential.
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+The balloon was also equipped with two cameras; a GoPro Hero 3 mounted to the bottom capturing 1080p footage at 30 fps and an ordinary Canon point-and-shoot programmed to take photos every 15 seconds. For the latter, we opted for the [Canon Hack Development Kit (CHDK)](http://chdk.wikia.com/wiki/CHDK), an open source custom firmware for Canon cameras.
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+### Data
+<div class="row">
+  <div class="col-md-6">
+    <div>
+      <svg id="alt-time"></svg>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div>
+      <svg id="speed-time"></svg>
+    </div>
+  </div>
+</div>
