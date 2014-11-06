@@ -37,8 +37,8 @@ a .fa {
 }
 
 a .fa:hover {
-  color: rgb(235, 0, 90);;
-  background-color: rgb(32, 32, 32);;
+  color: rgb(235, 0, 90);
+  background-color: rgb(32, 32, 32);
 }
 
 /*
@@ -68,7 +68,8 @@ a .fa:hover {
  */
 .map-canvas {
   height: 400px;
-  max-width: 600px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 6px;
 }
