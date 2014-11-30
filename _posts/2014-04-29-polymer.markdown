@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Knotting in confined polymers"
+date:   2014-04-29 20:39:07
+categories: polymers
+asset_path: /assets/posts/polymer/
+---
+
+Understanding how knots form and dissipate in polymers is important for the development of nanopore-based DNA sequencers. I investigated this scenario during my undergraduate studies, making use of a coarse-grained model to simulate knots on a supercomputer. Specifically, I looked at polymers confined geometrically. For example, if a knotted polymer is inside a nanotube (a very small tube) then we might expect the knot to be less prone to unknot due to Brownian jittering than if the polymer was in free space. This	is because the tube restricts the movement of the polymer, and therefore the likelihood for one of the ends to pass through the knot and undo itself. This is exactly what I found out. What's more, other forms of confinement, such as placing the polymer between two walls, also increase the stability of knots.
+
+![Trefoil knot]({{ site.url }}/assets/frontpage/knot1.png)
+<br>
+<br>
+![Septafoil knot]({{ site.url }}/assets/frontpage/knot2.png)
+<br>
+<br>
+_Above: open trefoil knot. Below: open septafoil knot._
+
+
