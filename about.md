@@ -8,7 +8,11 @@ permalink: /about/
   <img src="/assets/images/me.jpg" height="300" class="img-thumbnail">
 </p>
 
-Hi, I'm Sam. I'm a programmer living in Bristol. In October I'll be starting a PhD in environmental research.
+Hi, I'm Sam. I'm a programmer living in Bristol. In October I'll be starting a PhD in environmental research at Oxford.
 
-The cover image is a photo taken from a helium balloon some friends and I launched, at an altitude of about 32km. Check out the [Bristol SEDS website](http://bristol-seds.co.uk) for more information.
+Here are some facts about me:
 
+- I have a physics degree from the University of Bristol.
+- I currently work as a programmer for a company called [Microcosm](http://microcosm.co.uk/), in Bristol.
+- In 2014, I helped with designing and launching a high-altitude balloon. See [the Bristol SEDS website](http://www.bristol-seds.co.uk) for more information.
+- I've also worked in Earth Sciences, in Bristol, and Surrey Space Centre.

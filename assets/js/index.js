@@ -23,7 +23,6 @@
               $(this).wrap('<figure class="image"></figure>')
               .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
         });
-        
     });
 
 }(jQuery));
