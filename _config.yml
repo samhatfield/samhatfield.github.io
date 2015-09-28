@@ -4,8 +4,8 @@ highlighter: pygments
 
 # Site settings
 title: "samhatfield"
-description: > # this means to ignore newlines until "email:"
-   Physics | Computers
+#description: > # this means to ignore newlines until "email:"
+#   Physics | Computers
 
 email: samhatfield@live.co.uk
 #blog logo
