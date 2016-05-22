@@ -19,84 +19,18 @@ layout: default
             <a class="icon-{{ social.icon }}" href="{{ social.url }}">
               <i class="fa fa-{{ social.icon }}"></i>
             </a>
-            &nbsp;&nbsp;·&nbsp;&nbsp;
+            &nbsp;&nbsp;
         {% endif %}
       {% endfor %}
-      <a href="/about/">About</a>
     </div>
 </header>
 
 
 <main class="content" role="main">
+<p>I am a first year DPhil (PhD) student in the Atmospheric, Oceanic and Planetary Physics department of the University of Oxford. I'm supervised by <a href="https://www2.physics.ox.ac.uk/contacts/people/palmer">Tim Palmer</a>, with co-supervision by <a href="https://www2.physics.ox.ac.uk/contacts/people/dueben">Peter Düben</a>, and I'm funded by NERC under the Environmental Research DTP.</p>
 
-    {% if site.tags.featured %}
-    <h5 class="index-headline featured"><span>Featured</span></h5>
+<p>My research concerns data assimilation, the statistical process by which observations are incorporated into weather forecasting models. I will be investigating how to make this process more efficient by reducing the numerical precision of the underlying code. It is hoped that such a reduction will not impact the quality of the assimilation product, while making available additional computational resources that can be used elsewhere.</p>
 
-    <div class="container featured">
-      {% for post in site.tags.featured %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-  <!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-          <div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <h5 class="index-headline normal"><span>Regular</span></h5>
-    {% endif %}
-
-    <div class="cf frame">
-      {% for post in paginator.posts %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-<!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-          <div>
-        </article>
-      {% endfor %}
-    </div>
-
-	  {% if paginator.total_pages > 0 %}
-      <nav class="pagination" role="navigation">
-        {% if paginator.next_page %}
-				  <a class="newer-posts" href="/page{{paginator.next_page}}">
-						&larr; Older posts
-					</a>
-        {% endif %}
-			  <span class="page-number">
-					Page {{ paginator.page }} of {{ paginator.total_pages }}
-				</span>
-				{% if paginator.previous_page %}
-					{% if paginator.page == 2 %}
-						<a class="older-posts" href="/">Newer posts &rarr;</a>
-					{% else %}
-					  <a class="older-posts" href="/page{{paginator.previous_page}}">
-							Newer posts &rarr;
-						</a>
-					{% endif %}
-				{% endif %}
-      </nav>
-	  {% endif %}
-
-
-    <!-- {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}} -->
+<p>I hold an MSci degree in physics from the University of Bristol (2010-2014), where I completed a master's thesis on polymer simulation.</p> 
 
 </main>

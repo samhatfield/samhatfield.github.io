@@ -1,17 +1,14 @@
 # Build settings
 markdown: redcarpet
 highlighter: pygments
+description: 'Graduate physicist at Oxford, working on data assimilation and inexact computing'
 
 # Site settings
-title: "samhatfield"
-#description: > # this means to ignore newlines until "email:"
-#   Physics | Computers
+title: "Sam Hatfield"
 
 email: samhatfield@live.co.uk
-#blog logo
-logo: "/assets/images/sh_logo.png"
-# blog cover
-cover: "/assets/images/DSCF7800.JPG"
+logo: "/assets/images/me.jpg"
+cover: "/assets/images/clouds.jpg"
 
 name: 'Sam Hatfield'
 author: 'Sam Hatfield'
@@ -19,8 +16,9 @@ author_image: "/assets/images/me.jpg"
 
 paginate:	5
 
-url: "http://www.samhatfield.co.uk" # the base hostname & protocol for your site
+url: "http://samhatfield.co.uk" # the base hostname & protocol for your site
 baseurl: ""
+images: "/assets/images/"
 
 # social icons and sharing options
 social:
