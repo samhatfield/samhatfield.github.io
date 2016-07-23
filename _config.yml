@@ -1,5 +1,5 @@
 # Build settings
-highlighter: pygments
+highlighter: rouge
 description: 'Graduate physicist at Oxford, working on data assimilation and inexact computing'
 
 # Site settings
