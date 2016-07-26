@@ -2,13 +2,11 @@
 var el = document.getElementById("main"),
     two = new Two({
         fullscreen: true
-    });
-
-two.appendTo(el);
+    }).appendTo(el);
 
 // Global parameters
 var dt = 0.01;
-var nEns = 20;
+var nEns = 10;
 
 // Truth state vector
 var truth_i = [1, 1, 1],
@@ -44,9 +42,7 @@ two.bind("update", function(frameCount) {
     // Set old values equal to new values
     truth_i = truth_f;
     ensemble_i = ensemble_f.slice();
-});
-
-two.play();
+}).play();
 
 function plotTruth(start, end) {
     start_px = mapToPx(start);
@@ -84,34 +80,28 @@ function mapToPx(state) {
     };
 }
 
+// Runge-Kutta integration
 function step(prev) {
-    x = prev[0];
-    y = prev[1];
-    z = prev[2];
+    var k1 = ode(prev);
+    var k2 = ode(math.add(prev, math.multiply(0.5*dt,k1)));
+    var k3 = ode(math.add(prev, math.multiply(0.5*dt,k2)));
+    var k4 = ode(math.add(prev, math.multiply(dt,k3)));
 
-    var x1 = dXdT(x, y);
-    var y1 = dYdT(x, y, z);
-    var z1 = dZdT(x, y, z);
-
-    var x2 = dXdT(x+0.5*dt*x1, y+0.5*dt*y1);
-    var y2 = dYdT(x+0.5*dt*x1, y+0.5*dt*y1, z+0.5*dt*z1);
-    var z2 = dZdT(x+0.5*dt*x1, y+0.5*dt*y1, z+0.5*dt*z1);
-
-    var x3 = dXdT(x+0.5*dt*x2, y+0.5*dt*y2);
-    var y3 = dXdT(x+0.5*dt*x2, y+0.5*dt*y2, z+0.5*dt*z2);
-    var z3 = dXdT(x+0.5*dt*x2, y+0.5*dt*y2, z+0.5*dt*z2);
-
-    var x4 = dXdT(x+dt*x3, y+dt*y3);
-    var y4 = dXdT(x+dt*x3, y+dt*y3, z+dt*z3);
-    var z4 = dXdT(x+dt*x3, y+dt*y3, z+dt*z3);
-
-    x += dt * (x1 + 2*x2 + 2*x3 + x4)/6.0;
-    y += dt * (y1 + 2*y2 + 2*y3 + y4)/6.0;
-    z += dt * (z1 + 2*z2 + 2*z3 + z4)/6.0;
-    
-    return [x, y, z];
+    var sum = math.add(k1, math.multiply(2,k2));
+    sum = math.add(sum, math.multiply(2,k3));
+    sum = math.add(sum, k4);
+    return math.add(prev, math.multiply(dt/6.0,sum));
 }
 
+function ode(state) {
+    var x = state[0];
+    var y = state[1];
+    var z = state[2];
+
+    return [dXdT(x, y), dYdT(x, y, z), dZdT(x, y, z)];
+}
+
+// Lorenz '63 equations
 function dXdT(x, y) {
     var sigma = 10.0;
     return sigma * (y - x);
@@ -125,4 +115,23 @@ function dYdT(x, y, z) {
 function dZdT(x, y, z) {
     var beta = 8/3;
     return x * y - beta * z;
+}
+
+// Ensemble square-root filter
+function update(ensemble, truth) {
+    var rho = 1.02;
+    var sigma = 0.1;
+    var ensMean = math.mean(ensemble, 0);
+
+    var X_f = [];
+    for (i = 0; i < nEns; i++) {
+        X_f.push(rho * (ensemble[i] - ensMean));
+    }
+    X_f = math.matrix(X_f);
+
+    var P_f_H_T = math.multiply(X_f, X_f.subset(math.index(_.range(nEns), 1)));
+    var HP_f_H_T = P_f_H_T.subset(math.index(1));
+    var gain = P_f_H_T / (HP_f_H_T + sigma);
+    ensMean = math.add(ensMean, math.multiply(gain, math.subtract(obs, ensMean.subset(math.index(1)))));
+    alpha = 1/(1+math.sqrt(sigma/(HP_f_H_T+sigma)));
 }
