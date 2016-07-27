@@ -4,18 +4,20 @@ var el = document.getElementById("main"),
         fullscreen: true
     }).appendTo(el);
 
+two.renderer.domElement.style.backgroundColor = 'rgb(29,29,29)';
+
 // Global parameters
 var dt = 0.01;
 var nEns = 10;
 
 // Truth state vector
-var truth_i = [1, 1, 1],
+var truth_i = [-20, 1, 50],
     truth_f;
 
 // Ensemble
 var ensemble_i = [];
 for (i = 0; i < nEns; i++) {
-    ensemble_i.push([Math.random(), Math.random(), Math.random()]);
+    ensemble_i.push([-10, 5*Math.random()-2.5, 33]);
 }
 ensemble_f = ensemble_i.slice();
 
@@ -31,7 +33,9 @@ two.bind("update", function(frameCount) {
         ensemble_f[i] = step(ensemble_i[i]);
     }
 
-    ensemble_f = update(ensemble_i, truth_f);
+    if (frameCount % 100 == 0) {
+        ensemble_f = update(ensemble_f, truth_f);
+    }
 
     // Plot truth
     plotTruth(truth_i, truth_f);
@@ -55,7 +59,7 @@ function plotTruth(start, end) {
         end_px.x,
         end_px.y
     );
-    line.linewidth = 10;
+    line.linewidth = 16;
     line.cap = 'round';
     line.stroke = 'rgba(255,0,0,0.5)';
 }
@@ -69,9 +73,9 @@ function plotMember(start, end) {
         end_px.x,
         end_px.y
     );
-    line.linewidth = 4;
+    line.linewidth = 8;
     line.cap = 'round';
-    line.stroke = 'rgba(0,0,0,0.5)';
+    line.stroke = 'rgba(255,255,255,0.5)';
 }
 
 function mapToPx(state) {
@@ -121,8 +125,8 @@ function dZdT(x, y, z) {
 
 // Ensemble square-root filter
 function update(ensemble, truth) {
-    var rho = 1.01;
-    var sigma = 0.01;
+    var rho = 1.10;
+    var sigma = 0.50;
     var ensMean = math.mean(ensemble, 0);
     var obs = truth[1] + sigma * (Math.random()-1)
 
