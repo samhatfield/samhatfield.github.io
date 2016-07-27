@@ -15,7 +15,7 @@ var truth_i = [1, 1, 1],
 // Ensemble
 var ensemble_i = [];
 for (i = 0; i < nEns; i++) {
-    ensemble_i.push([50*Math.random(), 50*Math.random(), 50*Math.random()]);
+    ensemble_i.push([Math.random(), Math.random(), Math.random()]);
 }
 ensemble_f = ensemble_i.slice();
 
@@ -30,6 +30,8 @@ two.bind("update", function(frameCount) {
     for (i = 0; i < nEns; i++) {
         ensemble_f[i] = step(ensemble_i[i]);
     }
+
+    ensemble_f = update(ensemble_i, truth_f);
 
     // Plot truth
     plotTruth(truth_i, truth_f);
@@ -119,19 +121,28 @@ function dZdT(x, y, z) {
 
 // Ensemble square-root filter
 function update(ensemble, truth) {
-    var rho = 1.02;
-    var sigma = 0.1;
+    var rho = 1.01;
+    var sigma = 0.01;
     var ensMean = math.mean(ensemble, 0);
+    var obs = truth[1] + sigma * (Math.random()-1)
 
     var X_f = [];
     for (i = 0; i < nEns; i++) {
-        X_f.push(rho * (ensemble[i] - ensMean));
+        X_f.push(math.multiply(rho, math.subtract(ensemble[i], ensMean)));
     }
-    X_f = math.matrix(X_f);
+    X_f = math.matrix(math.transpose(X_f));
 
-    var P_f_H_T = math.multiply(X_f, X_f.subset(math.index(_.range(nEns), 1)));
+    var P_f_H_T = math.squeeze(math.multiply(X_f, math.transpose(X_f.subset(math.index(1, _.range(nEns))))));
     var HP_f_H_T = P_f_H_T.subset(math.index(1));
-    var gain = P_f_H_T / (HP_f_H_T + sigma);
-    ensMean = math.add(ensMean, math.multiply(gain, math.subtract(obs, ensMean.subset(math.index(1)))));
+    var gain = math.divide(P_f_H_T, HP_f_H_T + sigma);
+    ensMean = math.add(ensMean, math.multiply(gain, obs - ensMean[1]));
     alpha = 1/(1+math.sqrt(sigma/(HP_f_H_T+sigma)));
+
+    var analysis = [];
+    for (i = 0; i < nEns; i++) {
+        var diff = math.multiply(alpha*X_f.subset(math.index(1, i)), gain);
+        analysis.push(math.add(ensMean, math.subtract(math.squeeze(X_f.subset(math.index([0,1,2], i))), diff))._data);
+    }
+
+    return analysis;
 }
