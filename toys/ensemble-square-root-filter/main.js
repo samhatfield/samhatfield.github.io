@@ -4,7 +4,7 @@ var el = document.getElementById("main"),
         fullscreen: true
     }).appendTo(el);
 
-two.renderer.domElement.style.backgroundColor = 'rgb(29,29,29)';
+two.renderer.domElement.style.backgroundColor = 'white';
 
 // Store initial screen dimensions
 var w = two.width,
@@ -13,7 +13,9 @@ var w = two.width,
 // Global parameters
 var dt = 0.01;
 var nEns = 10;
-var frames = 400;
+var frames = 200;
+var rho = 2.5;
+var assim_freq = 10;
 
 // Truth state vector
 var truth = [0, 0];
@@ -29,6 +31,9 @@ ensemble[1] = ensemble[0].slice()
 
 // Main loop
 two.bind("update", function(frameCount) {
+    // Get state of UI
+    updateFromUI();
+
     // Step truth forward
     if (k == frames) {
         two.clear();
@@ -44,7 +49,7 @@ two.bind("update", function(frameCount) {
     }
 
     // Assimilate observation
-    if (frameCount % 10 == 0) {
+    if (frameCount % assim_freq == 0) {
         ensemble[1] = update(ensemble[1], truth[1]);
     }
 
@@ -64,6 +69,11 @@ two.bind("update", function(frameCount) {
 setInterval(function() {
     two.update();
 }, 30);
+
+function updateFromUI() {
+    rho = 1 + document.getElementById('inflation').value/50;
+    assim_freq = 1 + parseInt(document.getElementById('assim_freq').value/3);
+}
 
 function plotTruth(truth, k) {
     var line = two.makeLine(
@@ -87,7 +97,7 @@ function plotEnsemble(ensemble, k) {
         );
         line.linewidth = 6;
         line.cap = 'round';
-        line.stroke = 'rgba(255,255,255,0.1)';
+        line.stroke = 'rgba(0,0,0,0.1)';
     }
 }
 
@@ -111,7 +121,6 @@ function f(x) {
 
 // Ensemble square-root filter
 function update(ensemble, truth) {
-    var rho = 2.5;
     var obsErr = 0.005;
     var obs = truth + obsErr * (Math.random()-0.5)
 
