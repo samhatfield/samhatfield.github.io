@@ -6,13 +6,17 @@ var el = document.getElementById("main"),
 
 two.renderer.domElement.style.backgroundColor = 'rgb(29,29,29)';
 
+// Store initial screen dimensions
+var w = two.width,
+    h = two.height;
+
 // Global parameters
 var dt = 0.001;
-var nEns = 10;
-var frames = 20;
+var nEns = 20;
+var frames = 40;
 
 // Truth state vector
-var truth = [0];
+var truth = [0, 0];
 
 var k = 0;
 
@@ -21,29 +25,25 @@ var ensemble = [[]];
 for (var i = 0; i < nEns; i++) {
     ensemble[0].push(2*Math.random()-1);
 }
+ensemble[1] = ensemble[0].slice()
 
 // Main loop
 two.bind("update", function(frameCount) {
-    two.clear();
-
     // Step truth forward
     if (k == frames) {
-        truth = [truth[frames-1]];
-        ensemble = [ensemble[frames-1]];
+        two.clear();
         k = 0;
     }
-    truth.push(stepTruth(truth[k])); 
+    truth[1] = stepTruth(truth[0]);
 
     // Step ensemble forward
     thisEnsemble = []
     for (var i = 0; i < nEns; i++) {
-        thisEnsemble.push(stepTruth(ensemble[k][i]));
+        ensemble[1][i] = stepTruth(ensemble[0][i]);
     }
-    ensemble.push(thisEnsemble);
-    k++;
 
-    if (frameCount % 5 == 0) {
-        ensemble[k] = update(ensemble[k], truth[k]);
+    if (frameCount % 10 == 0) {
+        ensemble[1] = update(ensemble[1], truth[1]);
     }
 
     // Plot truth
@@ -51,38 +51,39 @@ two.bind("update", function(frameCount) {
 
     // Plot ensemble
     plotEnsemble(ensemble, k);
+
+    k++;
+
+    ensemble[0] = ensemble[1].slice();
+    truth[0] = truth[1];
 });
 setInterval(function() {
     two.update();
 }, 50);
 
 function plotTruth(truth, k) {
-    for (var j = 0; j < k; j++) {
-        var line = two.makeLine(
-                j*two.width/frames,
-                mapToPx(truth[j]),
-                (j+1)*two.width/frames,
-                mapToPx(truth[j+1])
-        );
-        line.linewidth = 10;
-        line.cap = 'round';
-        line.stroke = 'rgba(255,0,0,0.5)';
-    }
+    var line = two.makeLine(
+            k*two.width/frames,
+            mapToPx(truth[0]),
+            (k+1)*two.width/frames,
+            mapToPx(truth[1])
+    );
+    line.linewidth = 10;
+    line.cap = 'round';
+    line.stroke = 'rgba(255,0,0,0.5)';
 }
 
 function plotEnsemble(ensemble, k) {
     for (var m = 0; m < nEns; m++) {
-        for (var j = 0; j < k; j++) {
-            var line = two.makeLine(
-                    j*two.width/frames,
-                    mapToPx(ensemble[j][m]),
-                    (j+1)*two.width/frames,
-                    mapToPx(ensemble[j+1][m])
-            );
-            line.linewidth = 10;
-            line.cap = 'round';
-            line.stroke = 'rgba(255,255,255,0.1)';
-        }
+        var line = two.makeLine(
+                k*two.width/frames,
+                mapToPx(ensemble[0][m]),
+                (k+1)*two.width/frames,
+                mapToPx(ensemble[1][m])
+        );
+        line.linewidth = 10;
+        line.cap = 'round';
+        line.stroke = 'rgba(255,255,255,0.1)';
     }
 }
 
