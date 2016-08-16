@@ -11,9 +11,9 @@ var w = two.width,
     h = two.height;
 
 // Global parameters
-var dt = 0.001;
-var nEns = 20;
-var frames = 40;
+var dt = 0.01;
+var nEns = 10;
+var frames = 400;
 
 // Truth state vector
 var truth = [0, 0];
@@ -34,14 +34,16 @@ two.bind("update", function(frameCount) {
         two.clear();
         k = 0;
     }
+
+    // Step truth forward
     truth[1] = stepTruth(truth[0]);
 
     // Step ensemble forward
-    thisEnsemble = []
     for (var i = 0; i < nEns; i++) {
-        ensemble[1][i] = stepTruth(ensemble[0][i]);
+        ensemble[1][i] = stepModel(ensemble[0][i]);
     }
 
+    // Assimilate observation
     if (frameCount % 10 == 0) {
         ensemble[1] = update(ensemble[1], truth[1]);
     }
@@ -57,9 +59,11 @@ two.bind("update", function(frameCount) {
     ensemble[0] = ensemble[1].slice();
     truth[0] = truth[1];
 });
+
+// Run main loop
 setInterval(function() {
     two.update();
-}, 50);
+}, 30);
 
 function plotTruth(truth, k) {
     var line = two.makeLine(
@@ -68,7 +72,7 @@ function plotTruth(truth, k) {
             (k+1)*two.width/frames,
             mapToPx(truth[1])
     );
-    line.linewidth = 10;
+    line.linewidth = 6;
     line.cap = 'round';
     line.stroke = 'rgba(255,0,0,0.5)';
 }
@@ -81,15 +85,14 @@ function plotEnsemble(ensemble, k) {
                 (k+1)*two.width/frames,
                 mapToPx(ensemble[1][m])
         );
-        line.linewidth = 10;
+        line.linewidth = 6;
         line.cap = 'round';
         line.stroke = 'rgba(255,255,255,0.1)';
     }
 }
 
 function mapToPx(state) {
-    var pad = 0;
-    return state * (two.height/5 - pad) + two.height/2
+    return state * two.height/5 + two.height/2
 }
 
 function stepTruth(x) {
@@ -108,23 +111,19 @@ function f(x) {
 
 // Ensemble square-root filter
 function update(ensemble, truth) {
-    var rho = 1.1;
+    var rho = 2.5;
     var obsErr = 0.005;
     var obs = truth + obsErr * (Math.random()-0.5)
 
     var ensMean = math.mean(ensemble);
-    var X_b = []
-    for (var i = 0; i < nEns; i++) {
-        X_b.push(rho * (ensemble[i] - ensMean));
-    }
     var ensVar = math.sqrt(rho) * math.var(ensemble);
 
     var K = ensVar / (ensVar + obsErr)
-    ensMean += K * (obs - ensMean);
+    var newEnsMean = ensMean + K * (obs - ensMean);
     K /= (1 + math.sqrt(obsErr/(ensVar + obsErr)))
 
     for (var i = 0; i < nEns; i++) {
-        ensemble[i] = ensMean + (1 - K) * X_b[i];
+        ensemble[i] = newEnsMean + (1 - K) * rho * (ensemble[i] - ensMean);
     }
 
     return ensemble;
