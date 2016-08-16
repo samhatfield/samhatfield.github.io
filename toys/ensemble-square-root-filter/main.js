@@ -7,8 +7,9 @@ var el = document.getElementById("main"),
 two.renderer.domElement.style.backgroundColor = 'rgb(29,29,29)';
 
 // Global parameters
-var dt = 0.01;
-var nEns = 40;
+var dt = 0.001;
+var nEns = 10;
+var frames = 20;
 
 // Truth state vector
 var truth = [0];
@@ -16,79 +17,78 @@ var truth = [0];
 var k = 0;
 
 // Ensemble
-var ensemble_i = [];
+var ensemble = [[]];
 for (var i = 0; i < nEns; i++) {
-    ensemble_i.push(2*Math.random()-1);
+    ensemble[0].push(2*Math.random()-1);
 }
-ensemble_f = ensemble_i.slice();
 
 // Main loop
 two.bind("update", function(frameCount) {
     two.clear();
 
     // Step truth forward
-    if (k == 19) {
-        truth = [truth[19]];
+    if (k == frames) {
+        truth = [truth[frames-1]];
+        ensemble = [ensemble[frames-1]];
         k = 0;
     }
     truth.push(stepTruth(truth[k])); 
-    k++;
 
     // Step ensemble forward
-    for (i = 0; i < nEns; i++) {
-        ensemble_f[i] = stepModel(ensemble_i[i]);
+    thisEnsemble = []
+    for (var i = 0; i < nEns; i++) {
+        thisEnsemble.push(stepTruth(ensemble[k][i]));
     }
+    ensemble.push(thisEnsemble);
+    k++;
 
-    if (frameCount % 10 == 0) {
-        ensemble_f = update(ensemble_f, truth[k]);
+    if (frameCount % 5 == 0) {
+        ensemble[k] = update(ensemble[k], truth[k]);
     }
 
     // Plot truth
-    plotTruth(truth[k-1], truth[k]);
+    plotTruth(truth, k);
 
     // Plot ensemble
-    for (i = 0; i < nEns; i++) {
-        plotMember(ensemble_i[i], ensemble_f[i]);
+    plotEnsemble(ensemble, k);
+});
+setInterval(function() {
+    two.update();
+}, 50);
+
+function plotTruth(truth, k) {
+    for (var j = 0; j < k; j++) {
+        var line = two.makeLine(
+                j*two.width/frames,
+                mapToPx(truth[j]),
+                (j+1)*two.width/frames,
+                mapToPx(truth[j+1])
+        );
+        line.linewidth = 10;
+        line.cap = 'round';
+        line.stroke = 'rgba(255,0,0,0.5)';
     }
-
-    // Set old values equal to new values
-    ensemble_i = ensemble_f.slice();
-}).play();
-
-function plotTruth(start, end) {
-    start_px = mapToPx(start);
-    end_px = mapToPx(end);
-    var line = two.makeLine(
-        start_px.x,
-        start_px.y,
-        end_px.x,
-        end_px.y
-    );
-    line.linewidth = 16;
-    line.cap = 'round';
-    line.stroke = 'rgba(255,0,0,0.5)';
 }
 
-function plotMember(start, end) {
-    start_px = mapToPx(start);
-    end_px = mapToPx(end);
-    var line = two.makeLine(
-        start_px.x,
-        start_px.y,
-        end_px.x,
-        end_px.y
-    );
-    line.linewidth = 8;
-    line.cap = 'round';
-    line.stroke = 'rgba(255,255,255,0.5)';
+function plotEnsemble(ensemble, k) {
+    for (var m = 0; m < nEns; m++) {
+        for (var j = 0; j < k; j++) {
+            var line = two.makeLine(
+                    j*two.width/frames,
+                    mapToPx(ensemble[j][m]),
+                    (j+1)*two.width/frames,
+                    mapToPx(ensemble[j+1][m])
+            );
+            line.linewidth = 10;
+            line.cap = 'round';
+            line.stroke = 'rgba(255,255,255,0.1)';
+        }
+    }
 }
 
 function mapToPx(state) {
-    var pad = 50;
-    return {
-        x: two.width/2,
-        y: (state * (two.height/2 - pad)) + two.height/2
-    };
+    var pad = 0;
+    return state * (two.height/5 - pad) + two.height/2
 }
 
 function stepTruth(x) {
@@ -107,8 +107,8 @@ function f(x) {
 
 // Ensemble square-root filter
 function update(ensemble, truth) {
-    var rho = 2.5;
-    var obsErr = 0.01;
+    var rho = 1.1;
+    var obsErr = 0.005;
     var obs = truth + obsErr * (Math.random()-0.5)
 
     var ensMean = math.mean(ensemble);
