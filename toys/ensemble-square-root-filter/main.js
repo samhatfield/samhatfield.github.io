@@ -81,10 +81,10 @@ function plotMember(start, end) {
 }
 
 function mapToPx(state) {
-    var scale = 100;
+    var pad = 50;
     return {
-        x: 400,
-        y: state * scale + 200
+        x: two.width/2,
+        y: (state * (two.height/2 - pad)) + two.height/2
     };
 }
 
