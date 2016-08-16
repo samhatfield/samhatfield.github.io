@@ -11,12 +11,13 @@ var dt = 0.01;
 var nEns = 40;
 
 // Truth state vector
-var truth_i = 0,
-    truth_f;
+var truth = [0];
+
+var k = 0;
 
 // Ensemble
 var ensemble_i = [];
-for (i = 0; i < nEns; i++) {
+for (var i = 0; i < nEns; i++) {
     ensemble_i.push(2*Math.random()-1);
 }
 ensemble_f = ensemble_i.slice();
@@ -26,7 +27,12 @@ two.bind("update", function(frameCount) {
     two.clear();
 
     // Step truth forward
-    truth_f = stepTruth(truth_i); 
+    if (k == 19) {
+        truth = [truth[19]];
+        k = 0;
+    }
+    truth.push(stepTruth(truth[k])); 
+    k++;
 
     // Step ensemble forward
     for (i = 0; i < nEns; i++) {
@@ -34,13 +40,11 @@ two.bind("update", function(frameCount) {
     }
 
     if (frameCount % 10 == 0) {
-        ensemble_f = update(ensemble_f, truth_f);
-//        console.log(truth_f);
-//        console.log(math.mean(ensemble_f));
+        ensemble_f = update(ensemble_f, truth[k]);
     }
 
     // Plot truth
-    plotTruth(truth_i, truth_f);
+    plotTruth(truth[k-1], truth[k]);
 
     // Plot ensemble
     for (i = 0; i < nEns; i++) {
@@ -48,7 +52,6 @@ two.bind("update", function(frameCount) {
     }
 
     // Set old values equal to new values
-    truth_i = truth_f;
     ensemble_i = ensemble_f.slice();
 }).play();
 
