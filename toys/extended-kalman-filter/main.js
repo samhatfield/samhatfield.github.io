@@ -18,6 +18,7 @@
     var rho = 2.5;
     var assim_freq = 2;
     var obsErr = 0.005;
+    var sigma = 0.3;
     
     // Truth state vector
     var truth = [0, 0];
@@ -43,13 +44,17 @@
     
         // Step ensemble forward
         state[1] = stepModel(state[0]);
-        stateVar[1] = stateVar[0]*GPrime(stateVar[0])*GPrime(stateVar[0]);
+        stateVar[1] = stateVar[0]*GPrime(stateVar[0])*GPrime(stateVar[0]) + sigma;
     
         // Assimilate observation
         if (frameCount % assim_freq === 0) {
-            var analysis = ekf(state[1], stateVar[1], truth[1]);
+            var obs = truth[1] + obsErr * (Math.random()-0.5);
+            var analysis = ekf(state[1], stateVar[1], obs);
             state[1] = analysis.mean;
             stateVar[1] = analysis.var;
+            
+            // Plot observation
+            plotObs(truth, obs, k);
         }
     
         // Plot model state
@@ -78,6 +83,18 @@
     function updateFromUI() {
         obsErr = 0.005 + doc.getElementById('obsErr').value/10;
         assim_freq = 1 + parseInt(doc.getElementById('assim_freq').value/2);
+    }
+
+    function plotObs(truth, obs, k) {
+        var line = two.makeLine(
+                (k+1)*two.width/frames,
+                mapToPx(truth[1]),
+                (k+1)*two.width/frames,
+                mapToPx(obs)
+        );
+        line.linewidth = 2;
+        line.cap = 'round';
+        line.stroke = 'white';
     }
     
     function plotTruth(truth, k) {
@@ -119,7 +136,6 @@
     }
     
     function stepTruth(x) {
-        var sigma = 0.3;
         var db = Math.random()-0.5;
         return x + f(x)*dt + sigma*db;
     }
@@ -136,9 +152,7 @@
         return 1 - (12*x*x - 4)*dt;
     }
     
-    function ekf(state, stateVar, truth) {
-        var obs = truth + obsErr * (Math.random()-0.5);
-    
+    function ekf(state, stateVar, obs) {
         var K = stateVar / (stateVar + obsErr);
         var analysisMean = state + K * (obs - state);
         var analysisVar = (1 - K) * stateVar;
