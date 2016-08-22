@@ -76,7 +76,7 @@
     }
     
     function updateFromUI() {
-        obsErr = 0.005 + doc.getElementById('inflation').value/10;
+        obsErr = 0.005 + doc.getElementById('obsErr').value/10;
         assim_freq = 1 + parseInt(doc.getElementById('assim_freq').value/2);
     }
     
