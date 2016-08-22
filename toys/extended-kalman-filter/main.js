@@ -1,4 +1,4 @@
-(function(doc) {
+(function(doc, win) {
     // Create two.js element
     var el = doc.getElementById("main"),
         two = new Two({
@@ -69,10 +69,14 @@
     setInterval(function() {
         two.update();
     }, 30);
+
+    win.onresize = function() {
+        two.clear();
+        k = 0;
+    }
     
     function updateFromUI() {
-        obsErr = 0.005 +
-     doc.getElementById('inflation').value/10;
+        obsErr = 0.005 + doc.getElementById('inflation').value/10;
         assim_freq = 1 + parseInt(doc.getElementById('assim_freq').value/2);
     }
     
@@ -141,4 +145,4 @@
     
         return {'mean': analysisMean, 'var': analysisVar};
     }
-}(document));
+}(document, window));
