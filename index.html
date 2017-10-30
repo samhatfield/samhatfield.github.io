@@ -28,7 +28,7 @@ layout: default
 
 
 <main class="content" role="main">
-<p>I am a first year DPhil (PhD) student in the Atmospheric, Oceanic and Planetary Physics department of the University of Oxford. I'm supervised by <a href="https://www2.physics.ox.ac.uk/contacts/people/palmer">Tim Palmer</a>, with co-supervision by <a href="https://www2.physics.ox.ac.uk/contacts/people/dueben">Peter Düben</a>, and I'm funded by NERC under the Environmental Research DTP.</p>
+<p>I am a third year DPhil (PhD) student in the Atmospheric, Oceanic and Planetary Physics department of the University of Oxford. I am supervised by <a href="https://www2.physics.ox.ac.uk/contacts/people/palmer">Tim Palmer</a> and <a href="https://www.ecmwf.int/en/staff/peter-dueben">Peter Düben</a> (at the European Centre for Medium-Range Weather Forecasts), and I'm funded by NERC under the Environmental Research DTP.</p>
 
 <p>My research concerns data assimilation, the statistical process by which observations are incorporated into weather forecasting models. I will be investigating how to make this process more efficient by reducing the numerical precision of the underlying code. It is hoped that such a reduction will not impact the quality of the assimilation product, while making available additional computational resources that can be used elsewhere.</p>
 
@@ -36,39 +36,10 @@ layout: default
 
 <p>The cover photo was taken from the Holmenkollbakken ski jumping tower in Oslo.</p>
 
-<h5 class="index-headline normal"><span>Posts</span></h5>
+<h2>Publications</h2>
 
-<div class="cf frame">
-    {% for post in paginator.posts %}
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-        <div class="article-item">
-            <header class="post-header">
-                <h2 class="post-title" itemprop="name"><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-                <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-                <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-                <!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-        </div>
-    </article>
-    {% endfor %}
-</div>
-<nav class="pagination" role="navigation">
-    {% if paginator.next_page %}
-    <a class="newer-posts" href="/page{{paginator.next_page}}">&larr; Older posts</a>
-    {% endif %}
-    <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-    <a class="older-posts" href="/">Newer posts &rarr;</a>
-    {% else %}
-    <a class="older-posts" href="/page{{paginator.previous_page}}">Newer posts &rarr;</a>
-    {% endif %}
-    {% endif %}
-</nav>
-<!-- {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}} -->
+<ul>
+    <li><b>Sam Hatfield</b>, Aneesh Subramanian, Peter Düben, Tim Palmer, Improving weather forecast skill through reduced precision data assimilation, <em>Monthly Weather Review</em>, accepted for publication</li>
+</ul>
+
 </main>
