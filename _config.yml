@@ -35,16 +35,26 @@ social:
 #    share_title: ?t=
 #    share_link: "&amp;u="
 
-  - icon:	github
+  - icon:	fa fa-github
+    name:   github
     url:	https://github.com/samhatfield
     desc:	Fork me on github
     share_url:
     share_title:
     share_link:
 
-  - icon: flickr
+  - icon: fa fa-flickr
+    name: flickr
     url: https://www.flickr.com/photos/sam-hatfield/
     desc: Check out my photostream
+    share_url:
+    share_title:
+    share_link: 
+
+  - icon: ai ai-orcid
+    name: orcid
+    url: https://orcid.org/0000-0001-7235-6450
+    desc: Check out my ORCID page
     share_url:
     share_title:
     share_link: 

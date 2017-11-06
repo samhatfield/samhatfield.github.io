@@ -16,8 +16,8 @@ layout: default
     <div class="custom-links">
         {% for social in site.social %}
         {% if social.url %}
-        <a class="icon-{{ social.icon }}" href="{{ social.url }}">
-            <i class="fa fa-{{ social.icon }}"></i>
+        <a class="{{ social.name }}" href="{{ social.url }}">
+            <i class="{{ social.icon }}"></i>
         </a>
         &nbsp;&nbsp;
         {% endif %}
@@ -28,18 +28,11 @@ layout: default
 
 
 <main class="content" role="main">
-<p>I am a third year DPhil (PhD) student in the Atmospheric, Oceanic and Planetary Physics department of the University of Oxford. I am supervised by <a href="https://www2.physics.ox.ac.uk/contacts/people/palmer">Tim Palmer</a> and <a href="https://www.ecmwf.int/en/staff/peter-dueben">Peter Düben</a> (at the European Centre for Medium-Range Weather Forecasts), and I'm funded by NERC under the Environmental Research DTP.</p>
-
-<p>My research concerns data assimilation, the statistical process by which observations are incorporated into weather forecasting models. I will be investigating how to make this process more efficient by reducing the numerical precision of the underlying code. It is hoped that such a reduction will not impact the quality of the assimilation product, while making available additional computational resources that can be used elsewhere.</p>
-
-<p>I hold an MSci degree in physics from the University of Bristol (2010-2014), where I completed a master's thesis on polymer simulation.</p> 
-
-<p>The cover photo was taken from the Holmenkollbakken ski jumping tower in Oslo.</p>
 
 <h2>Publications</h2>
 
 <ul>
-    <li><b>Sam Hatfield</b>, Aneesh Subramanian, Peter Düben, Tim Palmer, Improving weather forecast skill through reduced precision data assimilation, <em>Monthly Weather Review</em>, accepted for publication</li>
+    <li><b>Sam Hatfield</b>, Aneesh Subramanian, Peter Düben, Tim Palmer, Improving weather forecast skill through reduced precision data assimilation, <em>Monthly Weather Review</em>, accepted for publication, doi: <a href="https://doi.org/10.1175/MWR-D-17-0132.1">10.1175/MWR-D-17-0132.1</a></li>
 </ul>
 
 </main>

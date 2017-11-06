@@ -5,7 +5,7 @@
 
 @import 'bourbon/bourbon'
 
-@import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,700)
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono')
 
 .cf
   @include clearfix
@@ -13,7 +13,8 @@
 $rs: 16px
 
 $font-serif: Georgia, Palatino, serif
-$font-sans: "Fira Sans", MundoSans, "Helvetica Neue", Arial, Helvetica, sans-serif
+$font-sans: Helvetica, Arial, sans-serif
+$font-mono: "Roboto Mono", monospace
 
 $hot-pink: #eb005a
 
@@ -57,7 +58,7 @@ body
     background-repeat: no-repeat
 
 .teaserimage
-  height: 250px
+  height: 150px
   position: relative
   overflow: hidden
   background-color: #000
@@ -120,6 +121,7 @@ body
     margin: 0 0 50px
     text-align: center
     color: #ccc
+    font-size: larger
     a
       text-decoration: none
       color: #999
@@ -130,10 +132,12 @@ body
   width: 100%
   max-width: 640px
   margin: 0 auto
+  font-family: $font-mono
   @include box-sizing(border-box)
   @include respond-to(800)
     padding: 0 $rs*2
-  font-family: $font-serif
+  h1, h2, h3, h4, h5, h6
+    text-align: center
   article
     padding: 40px 0
     border-bottom: 1px solid #f2f2f0
