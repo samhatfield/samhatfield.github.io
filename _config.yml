@@ -21,20 +21,6 @@ images: "/assets/images/"
 
 # social icons and sharing options
 social:
-#  - icon:	twitter
-#    url:	https://twitter.com/dirkfabisch
-#    desc: Follow me on twitter
-#    share_url: http://twitter.com/share
-#    share_title: ?text=
-#    share_link: "&amp;url="
-
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: //www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
-
   - icon:	fa fa-github
     name:   github
     url:	https://github.com/samhatfield
@@ -43,10 +29,10 @@ social:
     share_title:
     share_link:
 
-  - icon: fa fa-flickr
-    name: flickr
-    url: https://www.flickr.com/photos/sam-hatfield/
-    desc: Check out my photostream
+  - icon: ai ai-researchgate
+    name: researchgate
+    url: https://www.researchgate.net/profile/Sam_Hatfield 
+    desc: Check out my Research Gate page
     share_url:
     share_title:
     share_link: 
@@ -58,10 +44,3 @@ social:
     share_url:
     share_title:
     share_link: 
-
-#  - icon:	google-plus
-#    url:	https://google.com/???
-#    desc:	Add me on google+
-#    share_url:
-#    share_title:
-#    share_link:
