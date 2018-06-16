@@ -116,7 +116,7 @@
         var k1 = ode(prev);
         var k2 = ode(math.add(prev, math.multiply(0.5*Δt,k1)));
 
-        return math.add(prev, math.multiply(dt,k2));
+        return math.add(prev, math.multiply(Δt,k2));
     }
 
     function ode(state) {
