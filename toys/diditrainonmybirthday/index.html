@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Did it rain on your birthday?</h1>
+        <p>Enter your birthday and birthplace below to find out.</p>
+        <input type="hidden" name="birthday" value="" id="birthday-input">
+        <div class="input-group input-group-lg mb-4">
+          <input type="text" class="form-control" placeholder="Latitude" id="lat">
+          <input type="text" class="form-control" placeholder="Longitude" id="lon">
+        </div>
+        <button type="button" class="btn btn-primary btn-lg" id="submit">Find out!</button>
+      </main>
+
+      <footer class="mt-auto">
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="bootstrap-4.0.0/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="bootstrap-birthday/bootstrap-birthday.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        function createCORSRequest(method, url) {
+            var xhr = new XMLHttpRequest();
+            if ("withCredentials" in xhr) {
+                // XHR for Chrome/Firefox/Opera/Safari.
+                xhr.open(method, url, true);
+            } else if (typeof XDomainRequest != "undefined") {
+                // XDomainRequest for IE.
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+            } else {
+                // CORS not supported.
+                xhr = null;
+            }
+            return xhr;
+        }
+
+        $('#submit').on('click', function (e) {
+          var latitude = $('#lat').val();
+          var longitude = $('#lon').val();
+          var day = $('select[name=birthday-day]').val();
+          var month = $('select[name=birthday-month]').val();
+          var year = $('select[name=birthday-year]').val();
+
+          // Zero pad if necessary
+          if (month.length === 1) month = '0' + month;
+          if (day.length === 1) day = '0' + day;
+
+          // Construct request URL
+          var url = 'http://samhat.pythonanywhere.com/precipitation?';
+          url += 'date=' + year + '-' + month + '-' + day;
+          url += '&latitude=' + latitude + '&longitude=' + longitude;
+
+          var xhr = createCORSRequest('GET', url);
+          if (!xhr) {
+            alert('CORS not supported');
+            return;
+          }
+
+          // Response handlers
+          xhr.onload = function() {
+            var rain = xhr.responseText;
+              alert(rain);
+          };
+
+          xhr.onerror = function() {
+            alert('Woops, there was an error making the request.');
+          };
+
+          xhr.send();
+        });
+
+        $('#birthday-input').bootstrapBirthday({
+          dateFormat: 'littleEndian',
+          minAge: 1,
+          maxAge: 39,
+          widget: {
+            wrapper: {
+              tag: 'div',
+              class: 'row'
+            },
+            wrapperYear: {
+              use: true,
+              tag: 'div',
+              class: 'col-sm-4 mb-4 input-group-lg'
+            },
+            wrapperMonth: {
+              use: true,
+              tag: 'div',
+              class: 'col-sm-4 mb-4 input-group-lg'
+            },
+            wrapperDay: {
+              use: true,
+              tag: 'div',
+              class: 'col-sm-4 mb-4 input-group-lg'
+            },
+            selectYear: {
+              name: 'birthday-year',
+              class: 'form-control'
+            },
+            selectMonth: {
+              name: 'birthday-month',
+              class: 'form-control'
+            },
+            selectDay: {
+              name: 'birthday-day',
+              class: 'form-control'
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
