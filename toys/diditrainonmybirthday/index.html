@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Cover Template for Bootstrap</title>
+    <title>Did it rain on your birthday?</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
       <header class="mb-auto">
       </header>
 
-      <main role="main" class="inner cover">
+      <main role="main" class="inner cover" id="question">
         <h1 class="cover-heading">Did it rain on your birthday?</h1>
         <p>Enter your birthday and birthplace below to find out.</p>
         <input type="hidden" name="birthday" value="" id="birthday-input">
@@ -33,10 +33,15 @@
         <button type="button" class="btn btn-primary btn-lg" id="submit">Find out!</button>
       </main>
 
+      <main role="main" class="inner cover" id="result" style="display:none;">
+        <h1 class="cover-heading" id="result-h1"></h1>
+        <p id="result-p"></p>
+        <a href="." class="btn btn-primary btn-sm">Go again</a>
+      </main>
+
       <footer class="mt-auto">
       </footer>
     </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -47,6 +52,8 @@
     <script src="bootstrap-birthday/bootstrap-birthday.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        var latitude, longitude, day, month, year;
+
         function createCORSRequest(method, url) {
             var xhr = new XMLHttpRequest();
             if ("withCredentials" in xhr) {
@@ -64,11 +71,11 @@
         }
 
         $('#submit').on('click', function (e) {
-          var latitude = $('#lat').val();
-          var longitude = $('#lon').val();
-          var day = $('select[name=birthday-day]').val();
-          var month = $('select[name=birthday-month]').val();
-          var year = $('select[name=birthday-year]').val();
+          latitude = $('#lat').val();
+          longitude = $('#lon').val();
+          day = $('select[name=birthday-day]').val();
+          month = $('select[name=birthday-month]').val();
+          year = $('select[name=birthday-year]').val();
 
           // Zero pad if necessary
           if (month.length === 1) month = '0' + month;
@@ -76,8 +83,7 @@
 
           // Construct request URL
           var url = 'https://samhat.pythonanywhere.com/precipitation?';
-          url += 'date=' + year + '-' + month + '-' + day;
-          url += '&latitude=' + latitude + '&longitude=' + longitude;
+          url += `date=${year}-${month}-${day}&latitude=${latitude}&longitude=${longitude}`;
 
           var xhr = createCORSRequest('GET', url);
           if (!xhr) {
@@ -87,8 +93,8 @@
 
           // Response handlers
           xhr.onload = function() {
-            var rain = xhr.responseText;
-              alert(rain);
+            var response = xhr.responseText;
+            displayResult(response);
           };
 
           xhr.onerror = function() {
@@ -136,6 +142,33 @@
             }
           }
         });
+
+        function displayResult(precipitation) {
+            // Convert to mm
+            precipitation = Math.round((1000.0*precipitation)*10.0)/10.0;
+
+            // Convert to plain English
+            var actualRain;
+            if (precipitation < 4) {
+                actualRain = "Clear ☀️";
+            } else if (precipitation < 12) {
+                actualRain = "Slight rain 💧";
+            } else if (precipitation < 96) {
+                actualRain = "Moderate rain 💦";
+            } else if (precipitation < 192) {
+                actualRain = "Heavy rain 🌧";
+            } else if (precipitation < 1200) {
+                actualRain = "Heavy shower ⛈";
+            } else {
+                actualRain = "Violent shower ⛈ 😱";
+            }
+
+            // Display results
+            $('#question').hide();
+            $('#result').show();
+            $('#result-h1').text(actualRain);
+            $('#result-p').text(`On ${year}/${month}/${day} there was ${precipitation}mm of rain.`);
+        }
       });
     </script>
   </body>
