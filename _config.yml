@@ -21,6 +21,14 @@ images: "/assets/images/"
 
 # social icons and sharing options
 social:
+  - icon:	fa fa-twitter
+    name:   twitter
+    url:	https://twitter.com/s_e_hatfield
+    desc:   Follow me on Twitter
+    share_url:
+    share_title:
+    share_link:
+
   - icon:	fa fa-github
     name:   github
     url:	https://github.com/samhatfield
