@@ -10,7 +10,7 @@ title:            'Sam Hatfield'
 tagline:          'A Jekyll theme'
 description:      'Oxford DPhil student interested in weather prediction, data assimilation and supercomputing.'
 url:              http://hyde.getpoole.com
-baseurl:          /
+baseurl:          https://samhatfield.co.uk
 
 author:
   name:           'Mark Otto'
