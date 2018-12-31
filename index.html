@@ -1,39 +1,37 @@
 ---
 layout: default
+title: Blog
 ---
 
-<div class="teaserimage">
-    <div class="teaserimage-image" {% if site.cover %}style="background-image: url({{ site.cover }})"{% endif %}>
-    </div>
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
+  </div>
+  {% endfor %}
 </div>
 
-<header class="blog-header">
-    {% if site.logo %}
-    <a class="blog-logo" href="{{site.url}}" style="background-image: url('{{ site.logo }}')">{{ site.title }}</a>
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
     {% endif %}
-    <h1 class="blog-title">{{ site.title }}</h1>
-    <h2 class="blog-description hot-pink">{{ site.description }}</h2>
-    <div class="custom-links">
-        {% for social in site.social %}
-        {% if social.url %}
-        <a class="{{ social.name }}" href="{{ social.url }}">
-            <i class="{{ social.icon }}"></i>
-        </a>
-        &nbsp;&nbsp;
-        {% endif %}
-        {% endfor %}
-        <a href="cv.pdf">CV</a>
-    </div>
-</header>
-
-
-<main class="content" role="main">
-
-<h2>Publications</h2>
-
-<ul>
-    <li><b>Sam Hatfield</b>, Peter Düben, Matthew Chantry, Keiichi Kondo, Takemasa Miyoshi, Tim Palmer, 2018: Choosing the optimal numerical precision for data assimilation in the presence of model error. <em>Journal of Advances in Modeling Earth Systems</em>, <b>10</b>, 2177-2191, doi: <a href="https://doi.org/10.1029/2018MS001341">10.1029/2018MS001341</a></li>
-    <li><b>Sam Hatfield</b>, Aneesh Subramanian, Peter Düben, Tim Palmer, 2018: Improving weather forecast skill through reduced precision data assimilation. <em>Monthly Weather Review</em>, <b>146</b>, 49-62, doi: <a href="https://doi.org/10.1175/MWR-D-17-0132.1">10.1175/MWR-D-17-0132.1</a></li>
-</ul>
-
-</main>
+  {% else %}
+    <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>

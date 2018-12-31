@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 
   {% include head.html %}
 
-  <body>
+  <body class="theme-base-08">
 
-    {% include header.html %}
+    {% include sidebar.html %}
 
-    <!-- content start -->
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+    <div class="content container">
+      {{ content }}
     </div>
 
-    <!-- content end -->
-
-    {% include footer.html %}
-    {% include javascripts.html %}
-
   </body>
-
 </html>

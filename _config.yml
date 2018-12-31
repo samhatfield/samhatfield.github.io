@@ -1,23 +1,31 @@
-# Build settings
-highlighter: rouge
-description: 'Graduate physicist at Oxford, working on data assimilation and inexact computing'
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
 
-# Site settings
-title: "Sam Hatfield"
+# Permalinks
+permalink:        pretty
 
-email: samhatfield@live.co.uk
-logo: "/assets/images/me.jpg"
-cover: "/assets/images/clouds.jpg"
+# Setup
+title:            'Sam Hatfield'
+tagline:          'A Jekyll theme'
+description:      'Oxford DPhil student interested in weather prediction, data assimilation and supercomputing.'
+url:              http://hyde.getpoole.com
+baseurl:          /
 
-name: 'Sam Hatfield'
-author: 'Sam Hatfield'
-author_image: "/assets/images/me.jpg"
+author:
+  name:           'Mark Otto'
+  url:            https://twitter.com/mdo
 
-paginate:	5
+paginate:         5
 
-url: "http://samhatfield.co.uk" # the base hostname & protocol for your site
-baseurl: ""
-images: "/assets/images/"
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/poole/hyde
+
+plugins:
+    - jekyll-paginate
 
 # social icons and sharing options
 social:
@@ -25,30 +33,23 @@ social:
     name:   twitter
     url:	https://twitter.com/s_e_hatfield
     desc:   Follow me on Twitter
-    share_url:
-    share_title:
-    share_link:
 
   - icon:	fa fa-github
     name:   github
     url:	https://github.com/samhatfield
     desc:	Fork me on github
-    share_url:
-    share_title:
-    share_link:
 
   - icon: ai ai-researchgate
     name: researchgate
-    url: https://www.researchgate.net/profile/Sam_Hatfield 
+    url: https://www.researchgate.net/profile/Sam_Hatfield
     desc: Check out my Research Gate page
-    share_url:
-    share_title:
-    share_link: 
 
   - icon: ai ai-orcid
     name: orcid
     url: https://orcid.org/0000-0001-7235-6450
     desc: Check out my ORCID page
-    share_url:
-    share_title:
-    share_link: 
+
+  - icon: fa fa-linkedin
+    name: linkedin
+    url:  https://www.linkedin.com/in/hatfieldsam/
+    desc: Connect with me on LinkedIn
