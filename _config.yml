@@ -7,22 +7,18 @@ permalink:        pretty
 
 # Setup
 title:            'Sam Hatfield'
-tagline:          'A Jekyll theme'
+tagline:          ''
 description:      'Oxford DPhil student interested in weather prediction, data assimilation and supercomputing.'
-url:              http://hyde.getpoole.com
-baseurl:          https://samhatfield.co.uk
+url:              https://samhatfield.co.uk
+baseurl:          /
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Sam Hatfield'
 
 paginate:         5
 
 # Custom vars
 version:          2.1.0
-
-github:
-  repo:           https://github.com/poole/hyde
 
 plugins:
     - jekyll-paginate
