@@ -10,3 +10,7 @@
     text-decoration: none;
     color: #aaa;
 }
+
+.page img {
+    max-height: 240px;
+}
