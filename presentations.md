@@ -7,9 +7,21 @@ title: Presentations
 
 
 <ul class="publication-list">
+    <li><b>CliMathNet, September 2018</b>; Reading, UK; Sam Hatfield: <em>Accelerating data assimilation and numerical weather prediction through reduced-precision computing</em></li>
     <li><b>SIAM Uncertainty Quantification, April 2018</b>; Anaheim, USA; Sam Hatfield, Peter Düben, Matthew Chantry, Tim Palmer: <em>Reducing Precision in Ensemble Data Assimilation to Improve Forecast Skill</em></li>
     <li><b>EGU General Assembly, April 2017</b>; Vienna, Austria; Sam Hatfield, Peter Düben, Tim Palmer: <em>Improving Weather Forecasts through Reduced Precision Data Assimilation</em></li>
     <li><b>RIKEN International Symposium on Data Assimilation, February 2017</b>; Kōbe, Japan; Sam Hatfield, Peter Düben, Tim Palmer: <em>Improving Weather Forecasts through Reduced Precision Data Assimilation</em> <a href="https://www.youtube.com/watch?v=rbVVJzDPz5k&t=601s">Video</a></li>
+</ul>
+
+## Departmental seminars
+
+<ul class="publication-list">
+    <li><b>April 2018</b>, Marine Meteorology Division, Naval Research Laboratory, Monterey, USA</li>
+    <li><b>April 2018</b>, Scripps Institution of Oceanography, San Diego, USA</li>
+    <li><b>July 2017</b>, RIKEN Advanced Institute for Computational Science (AICS), Kōbe, Japan</li>
+    <li><b>July 2017</b>, Atmosphere and Ocean Research Institute (AORI), University of Tokyo, Japan</li>
+    <li><b>July 2017</b>, Japan Meteorological Agency (JMA), Tōkyō, Japan</li>
+    <li><b>July 2017</b>, The Japan Agency for Marine-Earth Science and Technology (JAMSTEC), Yokohama Institute for Earth Sciences, Japan</li>
 </ul>
 
 ## Poster
