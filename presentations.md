@@ -7,6 +7,7 @@ title: Presentations
 
 
 <ul class="publication-list">
+    <li><b>ISDA2019, January 2019</b>; Kōbe, Japan; Sam Hatfield, Peter Düben, Andrew McRae, Tim Palmer: <em>Single-precision in 4D-Var: The impact of rounding errors on the tangent-linear and adjoint models</em></li>
     <li><b>CliMathNet, September 2018</b>; Reading, UK; Sam Hatfield: <em>Accelerating data assimilation and numerical weather prediction through reduced-precision computing</em></li>
     <li><b>SIAM Uncertainty Quantification, April 2018</b>; Anaheim, USA; Sam Hatfield, Peter Düben, Matthew Chantry, Tim Palmer: <em>Reducing Precision in Ensemble Data Assimilation to Improve Forecast Skill</em></li>
     <li><b>EGU General Assembly, April 2017</b>; Vienna, Austria; Sam Hatfield, Peter Düben, Tim Palmer: <em>Improving Weather Forecasts through Reduced Precision Data Assimilation</em></li>
