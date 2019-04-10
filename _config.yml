@@ -10,6 +10,7 @@ tagline:          ''
 description:      'Oxford DPhil student interested in weather prediction, data assimilation and supercomputing.'
 url:              https://samhatfield.co.uk
 baseurl:          /
+future: true
 
 author:
   name:           'Sam Hatfield'
