@@ -6,6 +6,8 @@ date: 2018-12-31 18:16:00
 
 I recently started developing a [simple Python framework](https://github.com/samhatfield/lorenz96_machine_learning) for playing around with neural nets and data assimilation. I wanted to see whether a neural net could be used as a surrogate for a traditional numerical model to perform the forecast step in an ensemble Kalman filter. I decided on Python because I wanted to use the ridiculously simple [Keras framework](https://keras.io/) to train the model.
 
+<!-- More -->
+
 To train an accurate neural net, you need a lot of data. Now, all I was trying to do was to emulate an existing model as well as possible. I could use this existing model to generate as much training data as I liked. However, I found the Python-based numerical model that I developed to be extremely slow. Here is a simplified version of the model that I was using, the [Lorenz '96 system](https://en.wikipedia.org/wiki/Lorenz_96_model):
 
 ```python
