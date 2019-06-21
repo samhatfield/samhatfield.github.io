@@ -7,6 +7,7 @@ title: Presentations
 
 
 <ul class="publication-list">
+    <li><b>PASC19, June 2019</b>; Zurich, Switzerland; Sam Hatfield, Matthew Chantry, Peter Düben, Tim Palmer: <em>Accelerating high-resolution weather models with deep-learning hardware</em></li>
     <li><b>ISDA2019, January 2019</b>; Kōbe, Japan; Sam Hatfield, Peter Düben, Andrew McRae, Tim Palmer: <em>Single-precision in 4D-Var: The impact of rounding errors on the tangent-linear and adjoint models</em></li>
     <li><b>CliMathNet, September 2018</b>; Reading, UK; Sam Hatfield: <em>Accelerating data assimilation and numerical weather prediction through reduced-precision computing</em></li>
     <li><b>SIAM Uncertainty Quantification, April 2018</b>; Anaheim, USA; Sam Hatfield, Peter Düben, Matthew Chantry, Tim Palmer: <em>Reducing Precision in Ensemble Data Assimilation to Improve Forecast Skill</em></li>
@@ -17,6 +18,7 @@ title: Presentations
 ## Departmental seminars
 
 <ul class="publication-list">
+    <li><b>April 2019</b>, Data Assimilation Research Centre, University of Reading, Reading, UK</li>
     <li><b>April 2018</b>, Marine Meteorology Division, Naval Research Laboratory, Monterey, USA</li>
     <li><b>April 2018</b>, Scripps Institution of Oceanography, San Diego, USA</li>
     <li><b>July 2017</b>, RIKEN Advanced Institute for Computational Science (AICS), Kōbe, Japan</li>
