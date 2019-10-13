@@ -7,8 +7,9 @@ title: Presentations
 
 
 <ul class="publication-list">
+    <li><b>ICIAM2019, July 2019</b>; Valencia, Spain; Sam Hatfield, Tim Palmer, Peter Düben: <em>Accelerating data assimilation through reduced-precision arithmetic</em></li>
     <li><b>PASC19, June 2019</b>; Zurich, Switzerland; Sam Hatfield, Matthew Chantry, Peter Düben, Tim Palmer: <em>Accelerating high-resolution weather models with deep-learning hardware</em> <a href="https://video.ethz.ch/conferences/2019/pasc19/f6a2bdd0-6bf1-4cf0-bb4d-2eb91762b953.html">Video</a></li>
-    <li><b>ISDA2019, January 2019</b>; Kōbe, Japan; Sam Hatfield, Peter Düben, Andrew McRae, Tim Palmer: <em>Single-precision in 4D-Var: The impact of rounding errors on the tangent-linear and adjoint models</em></li>
+    <li><b>ISDA2019, January 2019</b>; Kōbe, Japan; Sam Hatfield, Peter Düben, Andrew McRae, Tim Palmer: <em>Single-precision in 4D-Var: The impact of rounding errors on the tangent-linear and adjoint models</em> <a href="https://www.youtube.com/watch?v=H_rcl6g1fGY&">Video</a></li>
     <li><b>CliMathNet, September 2018</b>; Reading, UK; Sam Hatfield: <em>Accelerating data assimilation and numerical weather prediction through reduced-precision computing</em></li>
     <li><b>SIAM Uncertainty Quantification, April 2018</b>; Anaheim, USA; Sam Hatfield, Peter Düben, Matthew Chantry, Tim Palmer: <em>Reducing Precision in Ensemble Data Assimilation to Improve Forecast Skill</em></li>
     <li><b>EGU General Assembly, April 2017</b>; Vienna, Austria; Sam Hatfield, Peter Düben, Tim Palmer: <em>Improving Weather Forecasts through Reduced Precision Data Assimilation</em></li>
