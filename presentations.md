@@ -7,6 +7,8 @@ title: Presentations
 
 
 <ul class="publication-list">
+    <li><b>ECMWF Annual Seminar 2020</b>; virtual; Sam Hatfield: <em>Mixed-Precision Arithmetic in Earth-System Modelling</em> <a href="https://vimeo.com/458574407">Video</a></li>
+    <li><b>6th ENES Workshop on High Performance Computing for Climate and Weather</b>; virtual; Sam Hatfield, Kristian Mogensen, Peter Düben, Nils Wedi: <em>Mixed-precision ocean modelling at ECMWF</em></li>
     <li><b>DRAKKAR2020, February 2020</b>; Grenoble, France; Sam Hatfield: <em>Mixed-precision ocean modelling at ECMWF</em></li>
     <li><b>COMMODORE, January 2020</b>; Hamburg, Germany; Sam Hatfield, Peter Düben, Nils Wedi, Oriol Tinto, Mario Acosta, Miguel Castrillo: <em>Mixed-precision sensitivity in Earth System Modelling</em></li>
     <li><b>ICIAM2019, July 2019</b>; Valencia, Spain; Sam Hatfield, Tim Palmer, Peter Düben: <em>Accelerating data assimilation through reduced-precision arithmetic</em></li>
